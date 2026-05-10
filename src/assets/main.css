@@ -40,6 +40,10 @@
 }
 
 @layer utilities {
+  .app-shell-boundary {
+    transform: translateZ(0);
+  }
+
   @media (min-width: 640px) {
     .scrollbar-hidden-desktop {
       -ms-overflow-style: none;

@@ -1,19 +1,27 @@
 <script setup lang="ts">
 const open = defineModel<boolean>({ default: false });
+
+const emit = defineEmits<{
+  afterEnter: [];
+}>();
 </script>
 
 <template>
-  <Transition name="sheet">
-    <div
-      v-if="open"
-      class="pointer-events-auto fixed inset-0 z-[60] flex items-end bg-panda-bark/30"
-      @click.self="open = false"
-    >
-      <section class="w-full rounded-t-[2rem] bg-background p-5 shadow-soft">
-        <slot />
-      </section>
-    </div>
-  </Transition>
+  <Teleport to="#app-shell-overlay">
+    <Transition name="sheet" @after-enter="emit('afterEnter')">
+      <div
+        v-if="open"
+        class="pointer-events-auto absolute inset-0 z-[60] flex items-end bg-panda-bark/30"
+        @click.self="open = false"
+      >
+        <section
+          class="max-h-[calc(100%-1rem)] w-full overflow-y-auto overscroll-contain rounded-t-[2rem] bg-background px-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] pt-5 shadow-soft"
+        >
+          <slot />
+        </section>
+      </div>
+    </Transition>
+  </Teleport>
 </template>
 
 <style scoped>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nextTick, shallowRef, watch } from 'vue';
+import { shallowRef, watch } from 'vue';
 import { ImagePlus, Send, X } from 'lucide-vue-next';
 
 import Button from '@/components/ui/button/Button.vue';
@@ -21,7 +21,10 @@ const textareaRef = shallowRef<HTMLTextAreaElement | null>(null);
 
 function openDrawer() {
   drawerOpen.value = true;
-  nextTick(() => textareaRef.value?.focus());
+}
+
+function focusTextarea() {
+  textareaRef.value?.focus({ preventScroll: true });
 }
 
 function handleSubmit() {
@@ -50,32 +53,28 @@ watch(
       <span v-else>写下你的评论…</span>
     </button>
 
-    <Sheet v-model="drawerOpen">
+    <Sheet v-model="drawerOpen" @after-enter="focusTextarea">
       <div class="flex items-center justify-between">
         <h3 class="text-base font-bold text-panda-bark">
           {{ replyingTo ? `回复 ${replyingTo}` : '写评论' }}
         </h3>
-        <button
-          type="button"
-          class="rounded-full p-1 text-muted-foreground transition active:scale-90"
-          @click="drawerOpen = false"
-        >
-          <X class="size-5" />
-        </button>
-      </div>
-
-      <div
-        v-if="replyingTo"
-        class="mt-2 flex items-center gap-2 rounded-xl bg-panda-cream px-3 py-2 text-xs"
-      >
-        <span class="font-medium text-panda-leaf">回复 {{ replyingTo }}</span>
-        <button
-          type="button"
-          class="ml-auto text-muted-foreground transition active:scale-90"
-          @click="$emit('cancelReply')"
-        >
-          <X class="size-3.5" />
-        </button>
+        <div class="flex items-center gap-1.5">
+          <button
+            v-if="replyingTo"
+            type="button"
+            class="rounded-full px-2.5 py-1 text-xs font-medium text-panda-leaf transition hover:bg-panda-cream active:scale-95"
+            @click="$emit('cancelReply')"
+          >
+            取消回复
+          </button>
+          <button
+            type="button"
+            class="rounded-full p-1 text-muted-foreground transition active:scale-90"
+            @click="drawerOpen = false"
+          >
+            <X class="size-5" />
+          </button>
+        </div>
       </div>
 
       <textarea
