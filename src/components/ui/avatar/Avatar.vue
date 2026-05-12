@@ -19,9 +19,9 @@ const initials = computed(() => props.name.slice(0, 2).toUpperCase());
   <div
     :class="
       cn(
-        'grid size-11 shrink-0 place-items-center overflow-hidden rounded-2xl text-sm font-bold text-panda-rust',
+        'grid size-11 shrink-0 place-items-center overflow-hidden rounded-[1.15rem] border-2 border-white/75 text-sm font-black text-panda-rust shadow-[0_10px_22px_rgba(79,53,40,0.14)]',
         variant === 'default' &&
-          'bg-gradient-to-br from-orange-200 to-amber-100',
+          'bg-gradient-to-br from-orange-200 via-amber-100 to-panda-parchment',
         variant === 'muted' && 'bg-muted',
       )
     "

@@ -15,10 +15,13 @@ export const posts: Post[] = [
     title: '小熊猫为什么不是小浣熊？',
     excerpt: '从分类、脸部花纹到尾巴形态，三个角度快速分辨它们。',
     body: '小熊猫属于小熊猫科，浣熊属于浣熊科。虽然它们都有环纹尾巴，但小熊猫的脸部更圆，耳朵更尖，尾巴更蓬松，主要生活在喜马拉雅东部和中国西南山地森林。',
-    author: { id: 'u1', name: '栗子管理员', title: '森林讲解员' },
+    author: { id: 'u1', name: '栗子管理员', title: '森林讲解员', avatar: '/images/avatars/lizi-admin.png' },
     createdAt: '12分钟前',
     isSpoiler: false,
-    imageCount: 2,
+    images: [
+      '/images/content/red-panda-vs-raccoon.png',
+      '/images/content/red-panda-patterns.png',
+    ],
     comments: 18,
     likes: 86,
   },
@@ -28,10 +31,12 @@ export const posts: Post[] = [
     title: '第三章记忆碎片位置整理',
     excerpt: '含主线章节线索，预览已折叠。',
     body: '第三章的记忆碎片主要集中在旧木桥、竹林深处和守林人小屋附近。建议先完成日常互动提升亲密度，再进入探索路线。',
-    author: { id: 'u2', name: '竹叶汽水', title: '记忆收藏家' },
+    author: { id: 'u2', name: '竹叶汽水', title: '记忆收藏家', avatar: '/images/avatars/zhuye-soda.png' },
     createdAt: '36分钟前',
     isSpoiler: true,
-    imageCount: 1,
+    images: [
+      '/images/content/memory-bridge-fragment.png',
+    ],
     comments: 42,
     likes: 124,
   },
@@ -41,10 +46,14 @@ export const posts: Post[] = [
     title: '画了一只在树枝上打盹的小熊猫',
     excerpt: '暖色铅笔风，希望大家喜欢这个困困的小朋友。',
     body: '参考了 Wiki 里的尾巴纹路资料，也把耳朵边缘画得更蓬松了一点。之后想做成手机壁纸。',
-    author: { id: 'u3', name: '半山风', title: '竹林画手' },
+    author: { id: 'u3', name: '半山风', title: '竹林画手', avatar: '/images/avatars/banshanfeng.png' },
     createdAt: '1小时前',
     isSpoiler: false,
-    imageCount: 3,
+    images: [
+      '/images/content/red-panda-forest-bamboo.png',
+      '/images/content/red-panda-sunset-bamboo.png',
+      '/images/content/sleeping-red-panda-sketch.png',
+    ],
     comments: 9,
     likes: 67,
   },
@@ -54,10 +63,10 @@ export const posts: Post[] = [
     title: '希望 Wiki 文章可以按阅读进度保存',
     excerpt: '如果从游戏跳转过来，可以回到上次读到的位置。',
     body: '目前收藏文章很好用，但长文章读到一半退出后需要重新找位置。建议增加上次阅读位置和最近阅读列表。',
-    author: { id: 'u4', name: '云杉', title: 'App体验官' },
+    author: { id: 'u4', name: '云杉', title: 'App体验官', avatar: '/images/avatars/yunsong.png' },
     createdAt: '2小时前',
     isSpoiler: false,
-    imageCount: 0,
+    images: [],
     comments: 15,
     likes: 31,
   },
@@ -80,6 +89,7 @@ export const wikiArticles: WikiArticle[] = [
     tags: ['官方', '入门'],
     saved: true,
     readTime: '4分钟',
+    image: '/images/content/red-panda-patterns.png',
   },
   {
     id: 'wiki-2',
@@ -90,6 +100,7 @@ export const wikiArticles: WikiArticle[] = [
     tags: ['官方', '栖息地'],
     saved: false,
     readTime: '5分钟',
+    image: '/images/content/red-panda-forest-bamboo.png',
   },
   {
     id: 'wiki-3',
@@ -100,6 +111,7 @@ export const wikiArticles: WikiArticle[] = [
     tags: ['官方', '辟谣'],
     saved: true,
     readTime: '3分钟',
+    image: '/images/content/red-panda-vs-raccoon.png',
   },
 ]
 
@@ -114,6 +126,7 @@ export const messages: Message[] = [
 export const userProfile: UserProfile = {
   name: 'Theo',
   title: '竹林守护者',
+  avatar: '/images/avatars/theo.png',
   followers: 128,
   following: 36,
 }
@@ -135,14 +148,14 @@ export const profileMenuItems: MenuItem[] = [
 ]
 
 export const followers: SocialUser[] = [
-  { id: 'f1', name: '竹叶汽水', title: '记忆收藏家', bio: '热衷整理章节线索和记忆碎片位置。', followers: 342, isFollowing: true },
-  { id: 'f2', name: '半山风', title: '竹林画手', bio: '喜欢画睡觉的小熊猫和森林速写。', followers: 186, isFollowing: false },
-  { id: 'f3', name: '云杉', title: 'App体验官', bio: '关注社区体验和 Wiki 阅读细节。', followers: 91, isFollowing: false },
+  { id: 'f1', name: '竹叶汽水', title: '记忆收藏家', avatar: '/images/avatars/zhuye-soda.png', bio: '热衷整理章节线索和记忆碎片位置。', followers: 342, isFollowing: true },
+  { id: 'f2', name: '半山风', title: '竹林画手', avatar: '/images/avatars/banshanfeng.png', bio: '喜欢画睡觉的小熊猫和森林速写。', followers: 186, isFollowing: false },
+  { id: 'f3', name: '云杉', title: 'App体验官', avatar: '/images/avatars/yunsong.png', bio: '关注社区体验和 Wiki 阅读细节。', followers: 91, isFollowing: false },
 ]
 
 export const following: SocialUser[] = [
-  { id: 'fo1', name: '栗子管理员', title: '森林讲解员', bio: '官方科普维护者，负责物种知识和公告。', followers: 2048, isFollowing: true },
-  { id: 'fo2', name: '红叶观察站', title: '官方账号', bio: '发布保护行动、活动提醒和 Wiki 更新。', followers: 5200, isFollowing: true },
+  { id: 'fo1', name: '栗子管理员', title: '森林讲解员', avatar: '/images/avatars/lizi-admin.png', bio: '官方科普维护者，负责物种知识和公告。', followers: 2048, isFollowing: true },
+  { id: 'fo2', name: '红叶观察站', title: '官方账号', avatar: '/images/avatars/redleaf-station.png', bio: '发布保护行动、活动提醒和 Wiki 更新。', followers: 5200, isFollowing: true },
 ]
 
 export const achievements: Achievement[] = [

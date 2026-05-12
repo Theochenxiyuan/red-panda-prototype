@@ -38,7 +38,7 @@ function openPost(id: string) {
       :show-board-tag="activeBoard === 'home'"
       @open="openPost"
     />
-    <div v-if="filteredPosts.length === 0" class="rounded-[1.5rem] border bg-card p-8 text-center text-sm text-muted-foreground">
+    <div v-if="filteredPosts.length === 0" class="field-card rounded-[1.5rem] border p-8 text-center text-sm font-medium text-muted-foreground">
       暂时没有匹配的帖子
     </div>
   </section>

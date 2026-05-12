@@ -18,13 +18,13 @@ const router = useRouter();
   <Card class="p-5">
     <div class="flex items-center justify-between gap-3">
       <div>
-        <p class="text-xs font-medium text-panda-leaf">游戏进度</p>
-        <h2 class="text-lg font-bold text-panda-bark">
+        <p class="text-xs font-black uppercase tracking-[0.22em] text-panda-leaf">游戏进度</p>
+        <h2 class="text-xl font-black tracking-tight text-panda-ink">
           亲密度 Lv.{{ progress.intimacyLevel }}
         </h2>
       </div>
       <div
-        class="grid size-12 place-items-center rounded-2xl bg-orange-100 text-panda-rust"
+        class="grid size-12 place-items-center rounded-2xl bg-orange-100 text-panda-rust shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]"
       >
         <Trophy class="size-6" />
       </div>
@@ -50,20 +50,20 @@ const router = useRouter();
     <div
       class="mt-4 grid grid-cols-3 gap-2 text-center text-xs text-muted-foreground"
     >
-      <div class="rounded-2xl bg-muted p-3">
-        <p class="text-base font-bold text-panda-bark">
+      <div class="rounded-2xl bg-white/55 p-3 shadow-[inset_0_0_0_1px_rgba(79,53,40,0.06)]">
+        <p class="text-lg font-black text-panda-ink">
           {{ progress.memoriesUnlocked }}
         </p>
         <p>记忆碎片</p>
       </div>
-      <div class="rounded-2xl bg-muted p-3">
-        <p class="text-base font-bold text-panda-bark">
+      <div class="rounded-2xl bg-white/55 p-3 shadow-[inset_0_0_0_1px_rgba(79,53,40,0.06)]">
+        <p class="text-lg font-black text-panda-ink">
           {{ progress.chaptersUnlocked }}
         </p>
         <p>章节</p>
       </div>
-      <div class="rounded-2xl bg-muted p-3">
-        <p class="text-base font-bold text-panda-bark">
+      <div class="rounded-2xl bg-white/55 p-3 shadow-[inset_0_0_0_1px_rgba(79,53,40,0.06)]">
+        <p class="text-lg font-black text-panda-ink">
           {{ progress.decorationCount }}
         </p>
         <p>装饰</p>

@@ -7,7 +7,6 @@ import Avatar from '@/components/ui/avatar/Avatar.vue';
 import Badge from '@/components/ui/badge/Badge.vue';
 import Button from '@/components/ui/button/Button.vue';
 import Card from '@/components/ui/card/Card.vue';
-import ImagePlaceholder from '@/components/ui/image-placeholder/ImagePlaceholder.vue';
 import DetailHeader from '@/components/layout/DetailHeader.vue';
 import SpoilerBlock from '@/components/community/SpoilerBlock.vue';
 import CommentSection from '@/components/community/CommentSection.vue';
@@ -27,6 +26,7 @@ const comments = shallowRef<CommentData[]>([
     id: 'c1',
     author: '竹叶汽水',
     title: '记忆收藏家',
+    avatar: '/images/avatars/zhuye-soda.png',
     content: '这个解释很清楚，终于不会把它叫成小浣熊了。',
     createdAt: '8分钟前',
     likes: 12,
@@ -36,6 +36,7 @@ const comments = shallowRef<CommentData[]>([
         id: 'r1',
         author: '栗子管理员',
         title: '管理员',
+        avatar: '/images/avatars/lizi-admin.png',
         content: '之后会把对比图同步到 Wiki。',
         createdAt: '5分钟前',
         likes: 3,
@@ -47,6 +48,7 @@ const comments = shallowRef<CommentData[]>([
     id: 'c2',
     author: '半山风',
     title: '竹林画手',
+    avatar: '/images/avatars/banshanfeng.png',
     content: '建议 Wiki 也放一张对比图，画画参考会更方便。',
     createdAt: '18分钟前',
     likes: 7,
@@ -93,7 +95,7 @@ function handleReport() {
 
       <div class="mt-5 space-y-3">
         <Badge tone="orange">{{ boardLabel }}</Badge>
-        <h1 class="text-2xl font-bold leading-tight text-panda-bark">
+        <h1 class="text-3xl font-black leading-tight tracking-tight text-panda-ink">
           {{ post.title }}
         </h1>
         <SpoilerBlock
@@ -103,7 +105,7 @@ function handleReport() {
         <Transition name="fade">
           <p
             v-if="!shouldHidePostContent"
-            class="text-sm leading-7 text-muted-foreground"
+            class="text-sm font-medium leading-7 text-muted-foreground"
           >
             {{ post.body }}
           </p>
@@ -112,21 +114,22 @@ function handleReport() {
 
       <Transition name="fade">
         <div
-          v-if="post.imageCount > 0 && !shouldHidePostContent"
+          v-if="post.images.length > 0 && !shouldHidePostContent"
           class="mt-5 grid gap-2"
-          :class="post.imageCount === 1 ? 'grid-cols-1' : 'grid-cols-2'"
+          :class="post.images.length === 1 ? 'grid-cols-1' : 'grid-cols-2'"
         >
-          <ImagePlaceholder
-            v-for="index in post.imageCount"
-            :key="index"
-            size="lg"
-            :label="`图片 ${index}`"
+          <img
+            v-for="(src, index) in post.images"
+            :key="src"
+            :src="src"
+            :alt="`图片 ${index + 1}`"
+            class="film-image h-40 w-full rounded-[1.35rem] object-cover"
           />
         </div>
       </Transition>
 
       <div
-        class="mt-5 flex items-center gap-3 border-t pt-4 text-sm text-muted-foreground"
+        class="mt-5 flex items-center gap-3 border-t border-panda-bark/10 pt-4 text-sm font-semibold text-muted-foreground"
       >
         <button
           type="button"

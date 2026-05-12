@@ -8,9 +8,9 @@ const now = computed(() => {
 </script>
 
 <template>
-  <div class="relative z-50 flex h-11 shrink-0 items-center justify-between bg-background/95 px-7 pt-[calc(0.25rem+env(safe-area-inset-top))] text-xs font-semibold text-panda-bark backdrop-blur">
+  <div class="relative z-50 flex h-11 shrink-0 items-center justify-between bg-background/80 px-7 pt-[calc(0.25rem+env(safe-area-inset-top))] text-xs font-semibold text-panda-bark backdrop-blur-xl">
     <span>{{ now }}</span>
-    <div class="absolute left-1/2 top-[calc(0.6rem+env(safe-area-inset-top))] h-[1.6rem] w-[7.5rem] -translate-x-1/2 rounded-full bg-panda-bark" />
+    <div class="absolute left-1/2 top-[calc(0.6rem+env(safe-area-inset-top))] h-[1.6rem] w-[7.5rem] -translate-x-1/2 rounded-full bg-panda-ink shadow-[inset_0_-4px_12px_rgba(255,255,255,0.08)]" />
     <div class="flex items-center gap-1.5">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h.01" /><path d="M7 20v-4" /><path d="M12 20v-8" /><path d="M17 20V8" /><path d="M22 4v16" /></svg>
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18.54V9a6 6 0 0 1 12 0v9.54" /><path d="M4 17a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H4z" /></svg>

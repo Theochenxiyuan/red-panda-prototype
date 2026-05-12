@@ -37,6 +37,9 @@ export default {
           rust: '#9f3d21',
           leaf: '#3f6f4e',
           moss: '#74875b',
+          fern: '#233d2e',
+          parchment: '#fff3df',
+          ink: '#2f2018',
           bark: '#4f3528',
         },
       },
@@ -47,6 +50,7 @@ export default {
       },
       boxShadow: {
         soft: '0 18px 45px rgba(79, 53, 40, 0.12)',
+        lifted: '0 26px 70px rgba(79, 53, 40, 0.18)',
       },
     },
   },

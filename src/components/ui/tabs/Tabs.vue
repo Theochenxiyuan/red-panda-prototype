@@ -55,8 +55,8 @@ watch(
       type="button"
       :class="
         cn(
-          'flex shrink-0 items-center gap-1 rounded-full px-4 py-2 text-sm font-medium transition',
-          model === item.id ? 'bg-panda-bark text-white shadow-sm' : 'bg-card text-muted-foreground',
+          'flex shrink-0 items-center gap-1 rounded-full px-4 py-2 text-sm font-black transition active:scale-95',
+          model === item.id ? 'bg-panda-ink text-panda-parchment shadow-[0_10px_24px_rgba(47,32,24,0.2)]' : 'border border-white/60 bg-white/55 text-muted-foreground',
         )
       "
       @click="model = item.id"

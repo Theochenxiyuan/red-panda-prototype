@@ -16,15 +16,23 @@ const { showToast } = useToast();
 
   <div class="space-y-4 px-5 pt-4">
     <section
-      class="overflow-hidden rounded-[2rem] bg-gradient-to-br from-panda-rust via-panda-orange to-amber-300 p-6 text-white shadow-soft"
+      class="relative overflow-hidden rounded-[2.25rem] bg-panda-ink p-6 text-white shadow-lifted"
     >
+      <img
+        src="/images/content/memory-bridge-fragment.png"
+        alt="森林探险游戏场景"
+        class="absolute inset-0 size-full object-cover opacity-50"
+      />
+      <div class="absolute inset-0 bg-gradient-to-br from-panda-ink via-panda-rust/75 to-panda-orange/55" />
+      <div class="relative">
       <div
-        class="grid size-16 place-items-center overflow-hidden rounded-3xl bg-white/20 backdrop-blur"
+        class="grid size-16 place-items-center overflow-hidden rounded-3xl border border-white/45 bg-white/20 backdrop-blur"
       >
         <img src="/game-logo.png" alt="游戏" class="size-full object-cover" />
       </div>
-      <h1 class="mt-6 text-3xl font-bold leading-tight">进入小熊猫之家</h1>
-      <p class="mt-3 text-sm leading-6 text-white/85">继续上次进度。</p>
+      <p class="mt-6 text-xs font-black uppercase tracking-[0.28em] text-white/70">Memory Forest</p>
+      <h1 class="mt-2 text-4xl font-black leading-none tracking-tight">进入小熊猫之家</h1>
+      <p class="mt-3 text-sm font-medium leading-6 text-white/85">沿着旧木桥和竹影，继续上次的记忆收集。</p>
       <Button
         variant="cream"
         class="mt-6 w-full border border-white/60 shadow-sm"
@@ -33,6 +41,7 @@ const { showToast } = useToast();
         <Play class="size-4 fill-current" />
         继续游戏
       </Button>
+      </div>
     </section>
 
     <Card class="p-5">
@@ -68,13 +77,13 @@ const { showToast } = useToast();
       </div>
 
       <div class="mt-4 grid grid-cols-2 gap-3 text-sm">
-        <div class="rounded-2xl bg-muted p-4">
+        <div class="rounded-2xl bg-white/55 p-4 shadow-[inset_0_0_0_1px_rgba(79,53,40,0.06)]">
           <p class="text-2xl font-bold text-panda-bark">
             {{ gameProgress.memoriesUnlocked }}
           </p>
           <p class="text-muted-foreground">记忆碎片</p>
         </div>
-        <div class="rounded-2xl bg-muted p-4">
+        <div class="rounded-2xl bg-white/55 p-4 shadow-[inset_0_0_0_1px_rgba(79,53,40,0.06)]">
           <p class="text-2xl font-bold text-panda-bark">
             {{ gameProgress.decorationCount }}
           </p>

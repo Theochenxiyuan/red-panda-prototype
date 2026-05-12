@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils'
 </script>
 
 <template>
-  <section :class="cn('rounded-[1.5rem] border bg-card text-card-foreground shadow-sm')">
+  <section :class="cn('field-card rounded-[1.65rem] border text-card-foreground')">
     <slot />
   </section>
 </template>

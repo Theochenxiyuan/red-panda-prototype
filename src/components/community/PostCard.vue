@@ -12,7 +12,6 @@ import { boards } from '@/data/mock';
 import Avatar from '@/components/ui/avatar/Avatar.vue';
 import Badge from '@/components/ui/badge/Badge.vue';
 import Card from '@/components/ui/card/Card.vue';
-import ImagePlaceholder from '@/components/ui/image-placeholder/ImagePlaceholder.vue';
 import SpoilerBlock from '@/components/community/SpoilerBlock.vue';
 import { useToast } from '@/composables/useToast';
 import type { Post } from '@/types/app';
@@ -68,7 +67,7 @@ function chooseMoreAction(action: 'share' | 'report') {
 </script>
 
 <template>
-  <Card class="relative p-4">
+  <Card class="relative p-4 transition duration-300 active:scale-[0.99]">
     <button
       type="button"
       class="w-full text-left"
@@ -88,7 +87,7 @@ function chooseMoreAction(action: 'share' | 'report') {
       </div>
 
       <div class="mt-4">
-        <h2 class="text-base font-bold leading-snug text-panda-bark">
+        <h2 class="text-lg font-black leading-snug tracking-tight text-panda-ink">
           {{ post.title }}
         </h2>
       </div>
@@ -103,7 +102,7 @@ function chooseMoreAction(action: 'share' | 'report') {
           class="w-full text-left"
           @click="$emit('open', post.id)"
         >
-          <p class="text-sm leading-6 text-muted-foreground">
+          <p class="text-sm font-medium leading-6 text-muted-foreground">
             {{ post.excerpt }}
           </p>
         </button>
@@ -112,21 +111,23 @@ function chooseMoreAction(action: 'share' | 'report') {
 
     <Transition name="fade">
       <div
-        v-if="post.imageCount > 0 && !shouldHidePreview"
+        v-if="post.images.length > 0 && !shouldHidePreview"
         class="mt-4 grid gap-2"
-        :class="post.imageCount === 1 ? 'grid-cols-1' : 'grid-cols-3'"
+        :class="post.images.length === 1 ? 'grid-cols-1' : 'grid-cols-3'"
       >
-        <ImagePlaceholder
-          v-for="index in post.imageCount"
-          :key="index"
-          size="md"
-          :label="`图片 ${index}`"
+        <img
+          v-for="(src, index) in post.images"
+          :key="src"
+          :src="src"
+          :alt="`图片 ${index + 1}`"
+          class="film-image w-full rounded-[1.35rem] object-cover"
+          :class="post.images.length === 1 ? 'h-44' : 'h-28'"
         />
       </div>
     </Transition>
 
     <div
-      class="mt-4 flex items-center gap-3 border-t pt-3 text-sm text-muted-foreground"
+      class="mt-4 flex items-center gap-3 border-t border-panda-bark/10 pt-3 text-sm font-semibold text-muted-foreground"
     >
       <div class="min-w-0 flex-1">
         <Badge v-if="showBoardTag" tone="orange">{{ boardLabel }}</Badge>

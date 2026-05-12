@@ -42,7 +42,7 @@ function publishPrototypePost() {
 
 <template>
   <Teleport to="#app-shell-overlay">
-    <Button class="pointer-events-auto absolute bottom-[calc(6.5rem+env(safe-area-inset-bottom))] right-5 z-30 shadow-soft" size="icon" @click="open = true">
+    <Button class="pointer-events-auto absolute bottom-[calc(7.25rem+env(safe-area-inset-bottom))] right-6 z-30 size-12 shadow-lifted" size="icon" @click="open = true">
       <PencilLine class="size-5" />
     </Button>
   </Teleport>
@@ -50,8 +50,8 @@ function publishPrototypePost() {
   <Sheet v-model="open">
     <div class="space-y-4">
       <div>
-        <p class="text-xs font-medium text-panda-leaf">发布到社区</p>
-        <h2 class="text-xl font-bold text-panda-bark">写一篇新帖子</h2>
+        <p class="text-xs font-black uppercase tracking-[0.22em] text-panda-leaf">发布到社区</p>
+        <h2 class="text-2xl font-black tracking-tight text-panda-ink">写一篇新帖子</h2>
       </div>
 
       <div class="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
@@ -59,7 +59,7 @@ function publishPrototypePost() {
           v-for="board in postBoards"
           :key="board.id"
           type="button"
-          :class="cn('shrink-0 rounded-full px-3 py-2 text-xs font-medium', selectedBoard === board.id ? 'bg-panda-bark text-white' : 'bg-card text-muted-foreground')"
+          :class="cn('shrink-0 rounded-full px-3 py-2 text-xs font-black transition active:scale-95', selectedBoard === board.id ? 'bg-panda-ink text-panda-parchment shadow-[0_10px_22px_rgba(47,32,24,0.18)]' : 'border border-white/60 bg-white/60 text-muted-foreground')"
           @click="selectBoard(board.id)"
         >
           {{ board.label }}
@@ -67,16 +67,16 @@ function publishPrototypePost() {
       </div>
 
       <Input v-model="title" placeholder="标题" />
-      <textarea v-model="body" class="min-h-28 w-full rounded-[1.25rem] border bg-card p-4 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/15" placeholder="正文内容" />
+      <textarea v-model="body" class="min-h-28 w-full rounded-[1.25rem] border border-white/70 bg-white/70 p-4 text-sm font-medium outline-none shadow-[inset_0_1px_0_rgba(255,255,255,0.86),0_10px_24px_rgba(79,53,40,0.06)] placeholder:text-muted-foreground focus:border-primary/45 focus:bg-white focus:ring-4 focus:ring-primary/10" placeholder="正文内容" />
 
-      <button type="button" class="flex w-full items-center justify-between gap-3 rounded-[1.25rem] border bg-card p-4 text-sm" @click="hasSpoiler = !hasSpoiler">
-        <span class="font-medium text-panda-bark">含剧透内容</span>
+      <button type="button" class="flex w-full items-center justify-between gap-3 rounded-[1.25rem] border border-white/60 bg-white/60 p-4 text-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]" @click="hasSpoiler = !hasSpoiler">
+        <span class="font-black text-panda-ink">含剧透内容</span>
         <span class="rounded-full px-3 py-1 text-xs" :class="hasSpoiler ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'">
           {{ hasSpoiler ? '已开启' : '未开启' }}
         </span>
       </button>
 
-      <button type="button" class="flex w-full items-center justify-center gap-2 rounded-[1.25rem] border border-dashed bg-card p-4 text-sm text-muted-foreground" @click="addImagePlaceholder">
+      <button type="button" class="flex w-full items-center justify-center gap-2 rounded-[1.25rem] border border-dashed border-panda-rust/30 bg-white/50 p-4 text-sm font-bold text-muted-foreground" @click="addImagePlaceholder">
         <ImagePlus class="size-4" />
         添加图片占位 {{ imageCount }}/3
       </button>

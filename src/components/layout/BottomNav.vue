@@ -24,11 +24,11 @@ const sideItems = [
 
 <template>
   <nav
-    class="absolute inset-x-0 bottom-0 z-50 border-t bg-card/95 px-3 pb-[calc(0.5rem+env(safe-area-inset-bottom))] pt-2 backdrop-blur"
+    class="glass-panel absolute inset-x-3 bottom-3 z-50 rounded-[2rem] border px-3 pb-[calc(0.55rem+env(safe-area-inset-bottom))] pt-2"
   >
     <RouterLink
       to="/game"
-      class="absolute left-1/2 top-0 grid size-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-4 border-background bg-primary text-primary-foreground shadow-soft transition active:scale-95"
+      class="absolute left-1/2 top-0 grid size-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-[1.6rem] border-[5px] border-panda-parchment bg-gradient-to-br from-panda-orange via-primary to-panda-rust text-primary-foreground shadow-lifted transition active:scale-95"
       aria-label="开始游戏"
     >
       <Gamepad2 class="size-7" />
@@ -39,9 +39,9 @@ const sideItems = [
         v-for="item in sideItems.slice(0, 2)"
         :key="item.to"
         :to="item.to"
-        class="flex flex-col items-center gap-1 rounded-2xl py-2 text-[11px] font-medium transition"
+        class="flex flex-col items-center gap-1 rounded-2xl py-2 text-[11px] font-semibold transition active:scale-95"
         :class="
-          activeRoot === item.to ? 'text-primary' : 'text-muted-foreground'
+          activeRoot === item.to ? 'bg-white/65 text-primary shadow-[inset_0_0_0_1px_rgba(217,91,43,0.08)]' : 'text-muted-foreground'
         "
       >
         <component :is="item.icon" class="size-5" />
@@ -50,7 +50,7 @@ const sideItems = [
 
       <RouterLink
         to="/game"
-        class="flex flex-col items-center gap-1 rounded-2xl py-2 text-[11px] font-medium"
+        class="flex flex-col items-center gap-1 rounded-2xl py-2 text-[11px] font-semibold transition active:scale-95"
         :class="
           activeRoot === '/game' ? 'text-primary' : 'text-muted-foreground'
         "
@@ -62,9 +62,9 @@ const sideItems = [
         v-for="item in sideItems.slice(2)"
         :key="item.to"
         :to="item.to"
-        class="flex flex-col items-center gap-1 rounded-2xl py-2 text-[11px] font-medium transition"
+        class="flex flex-col items-center gap-1 rounded-2xl py-2 text-[11px] font-semibold transition active:scale-95"
         :class="
-          activeRoot === item.to ? 'text-primary' : 'text-muted-foreground'
+          activeRoot === item.to ? 'bg-white/65 text-primary shadow-[inset_0_0_0_1px_rgba(217,91,43,0.08)]' : 'text-muted-foreground'
         "
       >
         <component :is="item.icon" class="size-5" />

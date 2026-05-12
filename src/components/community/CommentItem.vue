@@ -7,6 +7,7 @@ interface ReplyItem {
   id: string;
   author: string;
   title: string;
+  avatar?: string;
   content: string;
   createdAt: string;
   likes: number;
@@ -17,6 +18,7 @@ defineProps<{
   id: string;
   author: string;
   title: string;
+  avatar?: string;
   content: string;
   createdAt: string;
   likes: number;
@@ -32,7 +34,7 @@ defineEmits<{
 
 <template>
   <article class="flex gap-3 py-4">
-    <Avatar :name="author" class="size-9 [&]:rounded-xl text-xs" />
+    <Avatar :name="author" :src="avatar" class="size-9 [&]:rounded-xl text-xs" />
     <div class="min-w-0 flex-1">
       <div class="flex items-center gap-2">
         <span class="text-sm font-semibold text-panda-bark">{{ author }}</span>
@@ -67,6 +69,7 @@ defineEmits<{
         <div v-for="reply in replies" :key="reply.id" class="flex gap-2.5">
           <Avatar
             :name="reply.author"
+            :src="reply.avatar"
             class="size-7 [&]:rounded-lg text-[10px]"
           />
           <div class="min-w-0 flex-1">

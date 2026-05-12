@@ -9,6 +9,7 @@ interface ReplyItem {
   id: string;
   author: string;
   title: string;
+  avatar?: string;
   content: string;
   createdAt: string;
   likes: number;
@@ -19,6 +20,7 @@ export interface CommentData {
   id: string;
   author: string;
   title: string;
+  avatar?: string;
   content: string;
   createdAt: string;
   likes: number;
@@ -37,6 +39,7 @@ const emit = defineEmits<{
 const { showToast } = useToast();
 const commentText = shallowRef('');
 const replyingToId = shallowRef<string | null>(null);
+const currentUserAvatar = '/images/avatars/theo.png';
 
 const replyingToAuthor = computed(() => {
   if (!replyingToId.value) return null;
@@ -94,6 +97,7 @@ function submitComment() {
     id: `r-${Date.now()}`,
     author: 'Theo',
     title: '竹林守护者',
+    avatar: currentUserAvatar,
     content,
     createdAt: '刚刚',
     likes: 0,
@@ -125,6 +129,7 @@ function submitComment() {
         id: `c-${Date.now()}`,
         author: 'Theo',
         title: '竹林守护者',
+        avatar: currentUserAvatar,
         content,
         createdAt: '刚刚',
         likes: 0,

@@ -188,7 +188,7 @@ function toggleFollow(user: SocialUser) {
     >
       <Card v-for="user in socialUsers" :key="user.id" class="p-4">
         <div class="flex items-start gap-3">
-          <Avatar :name="user.name" />
+          <Avatar :name="user.name" :src="user.avatar" />
           <div class="min-w-0 flex-1">
             <div class="flex items-center gap-2">
               <p class="text-sm font-bold text-panda-bark">{{ user.name }}</p>

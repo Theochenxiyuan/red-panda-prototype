@@ -21,7 +21,7 @@ export interface Post {
   author: UserSummary
   createdAt: string
   isSpoiler: boolean
-  imageCount: number
+  images: string[]
   comments: number
   likes: number
 }
@@ -40,6 +40,7 @@ export interface WikiArticle {
   tags: string[]
   saved: boolean
   readTime: string
+  image?: string
 }
 
 export type MessageType = 'comments' | 'likes' | 'system'
@@ -82,6 +83,7 @@ export interface SocialUser {
   id: string
   name: string
   title?: string
+  avatar?: string
   bio: string
   followers: number
   isFollowing: boolean

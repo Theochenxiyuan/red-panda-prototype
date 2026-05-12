@@ -46,7 +46,7 @@ function toggleSave(id: string) {
 <template>
   <section class="space-y-4">
     <WikiCard v-for="article in filteredArticles" :key="article.id" :article="article" @open="openArticle" @toggle-save="toggleSave" />
-    <div v-if="filteredArticles.length === 0" class="rounded-[1.5rem] border bg-card p-8 text-center text-sm text-muted-foreground">
+    <div v-if="filteredArticles.length === 0" class="field-card rounded-[1.5rem] border p-8 text-center text-sm font-medium text-muted-foreground">
       该分类文章正在维护中
     </div>
   </section>
