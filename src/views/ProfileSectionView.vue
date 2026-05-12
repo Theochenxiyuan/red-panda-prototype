@@ -2,8 +2,11 @@
 import { computed, shallowRef } from 'vue';
 import { useRouter } from 'vue-router';
 import {
+  Bookmark,
   CheckCircle2,
+  Heart,
   LockKeyhole,
+  MessageCircle,
   UserCheck,
   UserPlus,
 } from 'lucide-vue-next';
@@ -20,6 +23,7 @@ import {
   followers,
   following,
   posts,
+  userProfile,
   wikiArticles,
 } from '@/data/mock';
 import type { AchievementCategory, SocialUser } from '@/types/app';
@@ -91,6 +95,22 @@ const categoryLabels: Record<AchievementCategory, string> = {
   wiki: 'Wiki',
   community: '社区',
 };
+const myComments = [
+  {
+    id: 'my-comment-1',
+    content: '这个解释很清楚，终于不会把它叫成小浣熊了。',
+    postTitle: '小熊猫为什么不是小浣熊？',
+    createdAt: '8分钟前',
+    likes: 12,
+  },
+  {
+    id: 'my-comment-2',
+    content: '建议 Wiki 也放一张对比图，画画参考会更方便。',
+    postTitle: '小熊猫为什么不是小浣熊？',
+    createdAt: '18分钟前',
+    likes: 7,
+  },
+];
 const filteredAchievements = computed(() =>
   achievements.filter((achievement) => {
     const matchesStatus =
@@ -128,56 +148,97 @@ function toggleFollow(user: SocialUser) {
 
   <div class="space-y-4 px-5 pt-4">
     <section v-if="section === 'saved'" class="space-y-3">
-      <Card v-for="article in savedArticles" :key="article.id" class="p-4">
+      <Card v-for="article in savedArticles" :key="article.id" class="overflow-hidden p-3">
         <button
           type="button"
           class="w-full text-left"
           @click="router.push(`/wiki/${article.id}`)"
         >
-          <Badge tone="green">已收藏</Badge>
-          <h2 class="mt-3 text-base font-bold text-panda-bark">
-            {{ article.title }}
-          </h2>
-          <p class="mt-2 text-sm leading-6 text-muted-foreground">
-            {{ article.summary }}
-          </p>
+          <img
+            v-if="article.image"
+            :src="article.image"
+            :alt="article.title"
+            class="film-image h-32 w-full rounded-[1.35rem] object-cover"
+          />
+          <div class="p-2 pb-1">
+            <div class="mt-3 flex flex-wrap items-center gap-2">
+              <Badge tone="green">已收藏</Badge>
+              <Badge tone="outline">{{ article.readTime }}阅读</Badge>
+            </div>
+            <h2 class="mt-3 text-lg font-black tracking-tight text-panda-ink">
+              {{ article.title }}
+            </h2>
+            <p class="mt-2 text-sm font-medium leading-6 text-muted-foreground">
+              {{ article.summary }}
+            </p>
+            <div class="mt-3 flex items-center gap-1 text-xs font-bold text-panda-rust">
+              <Bookmark class="size-3.5 fill-current" />
+              保存到我的观察手账
+            </div>
+          </div>
         </button>
       </Card>
     </section>
 
     <section v-else-if="section === 'comments'" class="space-y-3">
-      <Card class="p-4">
-        <p class="text-sm leading-6 text-muted-foreground">
-          这个解释很清楚，终于不会把它叫成小浣熊了。
-        </p>
-        <p class="mt-2 text-xs text-muted-foreground">
-          来自帖子《小熊猫为什么不是小浣熊？》
-        </p>
-      </Card>
-      <Card class="p-4">
-        <p class="text-sm leading-6 text-muted-foreground">
-          建议 Wiki 也放一张对比图。
-        </p>
-        <p class="mt-2 text-xs text-muted-foreground">
-          来自帖子《小熊猫为什么不是小浣熊？》
-        </p>
+      <Card v-for="comment in myComments" :key="comment.id" class="p-4">
+        <div class="flex items-start gap-3">
+          <Avatar :name="userProfile.name" :src="userProfile.avatar" />
+          <div class="min-w-0 flex-1">
+            <div class="flex flex-wrap items-center gap-2">
+              <p class="text-sm font-black text-panda-ink">{{ userProfile.name }}</p>
+              <Badge tone="orange">我的评论</Badge>
+            </div>
+            <p class="mt-2 rounded-2xl bg-white/55 p-3 text-sm font-medium leading-6 text-foreground/80 shadow-[inset_0_0_0_1px_rgba(79,53,40,0.06)]">
+              {{ comment.content }}
+            </p>
+            <div class="mt-3 flex flex-wrap items-center gap-3 text-xs font-semibold text-muted-foreground">
+              <span>来自《{{ comment.postTitle }}》</span>
+              <span>{{ comment.createdAt }}</span>
+              <span class="inline-flex items-center gap-1 text-panda-rust">
+                <Heart class="size-3.5 fill-current" />
+                {{ comment.likes }}
+              </span>
+            </div>
+          </div>
+        </div>
       </Card>
     </section>
 
     <section v-else-if="section === 'posts'" class="space-y-3">
-      <Card v-for="post in myPosts" :key="post.id" class="p-4">
+      <Card v-for="post in myPosts" :key="post.id" class="overflow-hidden p-3">
         <button
           type="button"
           class="w-full text-left"
           @click="router.push(`/posts/${post.id}`)"
         >
-          <h2 class="text-base font-bold text-panda-bark">{{ post.title }}</h2>
-          <p class="mt-2 text-sm leading-6 text-muted-foreground">
-            {{ post.excerpt }}
-          </p>
-          <p class="mt-2 text-xs text-muted-foreground">
-            {{ post.comments }} 评论 · {{ post.likes }} 赞
-          </p>
+          <img
+            v-if="post.images[0]"
+            :src="post.images[0]"
+            :alt="post.title"
+            class="film-image h-32 w-full rounded-[1.35rem] object-cover"
+          />
+          <div class="p-2 pb-1">
+            <div class="mt-3 flex flex-wrap items-center gap-2">
+              <Badge tone="orange">我的帖子</Badge>
+              <Badge v-if="post.isSpoiler" tone="outline">含剧透</Badge>
+              <Badge v-else tone="green">公开</Badge>
+            </div>
+            <h2 class="mt-3 text-lg font-black tracking-tight text-panda-ink">{{ post.title }}</h2>
+            <p class="mt-2 text-sm font-medium leading-6 text-muted-foreground">
+              {{ post.excerpt }}
+            </p>
+            <div class="mt-3 flex items-center gap-4 text-xs font-semibold text-muted-foreground">
+              <span class="inline-flex items-center gap-1">
+                <MessageCircle class="size-3.5" />
+                {{ post.comments }} 评论
+              </span>
+              <span class="inline-flex items-center gap-1 text-panda-rust">
+                <Heart class="size-3.5" />
+                {{ post.likes }} 赞
+              </span>
+            </div>
+          </div>
         </button>
       </Card>
     </section>

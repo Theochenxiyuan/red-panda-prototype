@@ -9,7 +9,7 @@ defineProps<{
     <div class="flex min-h-12 items-center justify-between gap-3">
       <div>
         <p class="mb-0.5 text-[10px] font-black uppercase tracking-[0.26em] text-panda-leaf/70">
-          Red Panda Field Notes
+          Red Panda's Home
         </p>
         <h1 class="text-2xl font-black tracking-tight text-panda-ink">{{ title }}</h1>
       </div>

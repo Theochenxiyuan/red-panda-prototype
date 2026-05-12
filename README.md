@@ -1,4 +1,4 @@
-# 小熊猫之家 App 线框原型
+# Red Panda's Home App 线框原型
 
 基于 Vue 3 的移动端 App 可点击线框原型，覆盖社区、Wiki、消息、我的和“开始游戏”入口。
 

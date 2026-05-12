@@ -31,7 +31,7 @@ const { showToast } = useToast();
         <img src="/game-logo.png" alt="游戏" class="size-full object-cover" />
       </div>
       <p class="mt-6 text-xs font-black uppercase tracking-[0.28em] text-white/70">Memory Forest</p>
-      <h1 class="mt-2 text-4xl font-black leading-none tracking-tight">进入小熊猫之家</h1>
+      <h1 class="mt-2 text-4xl font-black leading-none tracking-tight">进入 Red Panda's Home</h1>
       <p class="mt-3 text-sm font-medium leading-6 text-white/85">沿着旧木桥和竹影，继续上次的记忆收集。</p>
       <Button
         variant="cream"
