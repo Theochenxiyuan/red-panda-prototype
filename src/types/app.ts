@@ -22,8 +22,32 @@ export interface Post {
   createdAt: string
   isSpoiler: boolean
   images: string[]
+  imageSlots?: number
   comments: number
   likes: number
+}
+
+export interface PostDraft {
+  boardId: Exclude<BoardId, 'home'>
+  title: string
+  body: string
+  isSpoiler: boolean
+  imageSlots: number
+}
+
+export interface ReplyItem {
+  id: string
+  author: string
+  title: string
+  avatar?: string
+  content: string
+  createdAt: string
+  likes: number
+  liked: boolean
+}
+
+export interface CommentData extends ReplyItem {
+  replies: ReplyItem[]
 }
 
 export interface WikiCategory {

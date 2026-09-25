@@ -12,6 +12,7 @@ import { boards } from '@/data/mock';
 import Avatar from '@/components/ui/avatar/Avatar.vue';
 import Badge from '@/components/ui/badge/Badge.vue';
 import Card from '@/components/ui/card/Card.vue';
+import ImagePlaceholder from '@/components/ui/image-placeholder/ImagePlaceholder.vue';
 import SpoilerBlock from '@/components/community/SpoilerBlock.vue';
 import { useToast } from '@/composables/useToast';
 import type { Post } from '@/types/app';
@@ -55,6 +56,9 @@ const boardLabel = computed(
 const shouldHidePreview = computed(
   () => props.post.isSpoiler && !spoilerRevealed.value,
 );
+const mediaCount = computed(
+  () => props.post.images.length + (props.post.imageSlots ?? 0),
+);
 
 function toggleMoreMenu() {
   moreMenuOpen.value = !moreMenuOpen.value;
@@ -93,7 +97,7 @@ function chooseMoreAction(action: 'share' | 'report') {
       </div>
     </button>
 
-    <div class="mt-3">
+    <div v-if="shouldHidePreview || post.excerpt" class="mt-3">
       <SpoilerBlock v-if="shouldHidePreview" @reveal="spoilerRevealed = true" />
       <Transition name="fade">
         <button
@@ -111,9 +115,9 @@ function chooseMoreAction(action: 'share' | 'report') {
 
     <Transition name="fade">
       <div
-        v-if="post.images.length > 0 && !shouldHidePreview"
+        v-if="mediaCount > 0 && !shouldHidePreview"
         class="mt-4 grid gap-2"
-        :class="post.images.length === 1 ? 'grid-cols-1' : 'grid-cols-3'"
+        :class="mediaCount === 1 ? 'grid-cols-1' : 'grid-cols-3'"
       >
         <img
           v-for="(src, index) in post.images"
@@ -121,7 +125,13 @@ function chooseMoreAction(action: 'share' | 'report') {
           :src="src"
           :alt="`图片 ${index + 1}`"
           class="film-image w-full rounded-[1.35rem] object-cover"
-          :class="post.images.length === 1 ? 'h-44' : 'h-28'"
+          :class="mediaCount === 1 ? 'h-44' : 'h-28'"
+        />
+        <ImagePlaceholder
+          v-for="index in (post.imageSlots ?? 0)"
+          :key="`slot-${index}`"
+          :size="mediaCount === 1 ? 'lg' : 'md'"
+          :label="`图 ${index}`"
         />
       </div>
     </Transition>

@@ -8,8 +8,12 @@ import Input from '@/components/ui/input/Input.vue'
 import Sheet from '@/components/ui/sheet/Sheet.vue'
 import { useToast } from '@/composables/useToast'
 import { boards } from '@/data/mock'
-import type { BoardId } from '@/types/app'
+import type { BoardId, PostDraft } from '@/types/app'
 import { cn } from '@/lib/utils'
+
+const emit = defineEmits<{
+  publish: [draft: PostDraft]
+}>()
 
 const open = shallowRef(false)
 const title = shallowRef('')
@@ -20,6 +24,7 @@ const imageCount = shallowRef(0)
 const { showToast } = useToast()
 
 const postBoards = computed(() => boards.filter((board) => board.id !== 'home'))
+const canPublish = computed(() => title.value.trim().length > 0)
 
 function selectBoard(boardId: BoardId) {
   if (boardId !== 'home') {
@@ -31,12 +36,20 @@ function addImagePlaceholder() {
   imageCount.value = Math.min(3, imageCount.value + 1)
 }
 
-function publishPrototypePost() {
-  showToast('线框帖子已模拟发布')
+function publishPost() {
+  emit('publish', {
+    boardId: selectedBoard.value,
+    title: title.value.trim(),
+    body: body.value.trim(),
+    isSpoiler: hasSpoiler.value,
+    imageSlots: imageCount.value,
+  })
+  open.value = false
   title.value = ''
   body.value = ''
   imageCount.value = 0
   hasSpoiler.value = false
+  showToast('帖子已发布')
 }
 </script>
 
@@ -85,7 +98,7 @@ function publishPrototypePost() {
         <ImagePlaceholder v-for="index in imageCount" :key="index" size="sm" :label="`图 ${index}`" />
       </div>
 
-      <Button class="w-full" @click="publishPrototypePost">发布线框帖子</Button>
+      <Button class="w-full" :disabled="!canPublish" @click="publishPost">发布</Button>
     </div>
   </Sheet>
 </template>

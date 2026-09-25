@@ -22,7 +22,7 @@ export const posts: Post[] = [
       '/images/content/red-panda-vs-raccoon.png',
       '/images/content/red-panda-patterns.png',
     ],
-    comments: 18,
+    comments: 2,
     likes: 86,
   },
   {
@@ -37,7 +37,7 @@ export const posts: Post[] = [
     images: [
       '/images/content/memory-bridge-fragment.png',
     ],
-    comments: 42,
+    comments: 2,
     likes: 124,
   },
   {
@@ -54,7 +54,7 @@ export const posts: Post[] = [
       '/images/content/red-panda-sunset-bamboo.png',
       '/images/content/sleeping-red-panda-sketch.png',
     ],
-    comments: 9,
+    comments: 2,
     likes: 67,
   },
   {
@@ -67,7 +67,7 @@ export const posts: Post[] = [
     createdAt: '2小时前',
     isSpoiler: false,
     images: [],
-    comments: 15,
+    comments: 1,
     likes: 31,
   },
 ]

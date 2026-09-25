@@ -4,29 +4,7 @@ import { shallowRef, computed } from 'vue';
 import CommentInput from '@/components/community/CommentInput.vue';
 import CommentItem from '@/components/community/CommentItem.vue';
 import { useToast } from '@/composables/useToast';
-
-interface ReplyItem {
-  id: string;
-  author: string;
-  title: string;
-  avatar?: string;
-  content: string;
-  createdAt: string;
-  likes: number;
-  liked: boolean;
-}
-
-export interface CommentData {
-  id: string;
-  author: string;
-  title: string;
-  avatar?: string;
-  content: string;
-  createdAt: string;
-  likes: number;
-  liked: boolean;
-  replies: ReplyItem[];
-}
+import type { CommentData, ReplyItem } from '@/types/app';
 
 const props = defineProps<{
   comments: CommentData[];

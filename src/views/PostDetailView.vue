@@ -7,12 +7,13 @@ import Avatar from '@/components/ui/avatar/Avatar.vue';
 import Badge from '@/components/ui/badge/Badge.vue';
 import Button from '@/components/ui/button/Button.vue';
 import Card from '@/components/ui/card/Card.vue';
+import ImagePlaceholder from '@/components/ui/image-placeholder/ImagePlaceholder.vue';
 import DetailHeader from '@/components/layout/DetailHeader.vue';
 import SpoilerBlock from '@/components/community/SpoilerBlock.vue';
 import CommentSection from '@/components/community/CommentSection.vue';
-import type { CommentData } from '@/components/community/CommentSection.vue';
 import { useToast } from '@/composables/useToast';
-import { boards, posts } from '@/data/mock';
+import { usePosts } from '@/composables/usePosts';
+import { boards } from '@/data/mock';
 
 const props = defineProps<{
   id: string;
@@ -20,50 +21,20 @@ const props = defineProps<{
 
 const router = useRouter();
 const { showToast } = useToast();
+const { findPost, commentsForPost, setPostComments } = usePosts();
 const spoilerRevealed = shallowRef(false);
-const comments = shallowRef<CommentData[]>([
-  {
-    id: 'c1',
-    author: '竹叶汽水',
-    title: '记忆收藏家',
-    avatar: '/images/avatars/zhuye-soda.png',
-    content: '这个解释很清楚，终于不会把它叫成小浣熊了。',
-    createdAt: '8分钟前',
-    likes: 12,
-    liked: false,
-    replies: [
-      {
-        id: 'r1',
-        author: '栗子管理员',
-        title: '管理员',
-        avatar: '/images/avatars/lizi-admin.png',
-        content: '之后会把对比图同步到 Wiki。',
-        createdAt: '5分钟前',
-        likes: 3,
-        liked: false,
-      },
-    ],
-  },
-  {
-    id: 'c2',
-    author: '半山风',
-    title: '竹林画手',
-    avatar: '/images/avatars/banshanfeng.png',
-    content: '建议 Wiki 也放一张对比图，画画参考会更方便。',
-    createdAt: '18分钟前',
-    likes: 7,
-    liked: true,
-    replies: [],
-  },
-]);
 
-const post = computed(() => posts.find((item) => item.id === props.id));
+const post = computed(() => findPost(props.id));
+const comments = computed(() => commentsForPost(props.id));
 const boardLabel = computed(
   () =>
     boards.find((board) => board.id === post.value?.boardId)?.label ?? '社区',
 );
 const shouldHidePostContent = computed(
   () => post.value?.isSpoiler && !spoilerRevealed.value,
+);
+const mediaCount = computed(
+  () => (post.value?.images.length ?? 0) + (post.value?.imageSlots ?? 0),
 );
 
 function handleShare() {
@@ -104,7 +75,7 @@ function handleReport() {
         />
         <Transition name="fade">
           <p
-            v-if="!shouldHidePostContent"
+            v-if="!shouldHidePostContent && post.body"
             class="text-sm font-medium leading-7 text-muted-foreground"
           >
             {{ post.body }}
@@ -114,9 +85,9 @@ function handleReport() {
 
       <Transition name="fade">
         <div
-          v-if="post.images.length > 0 && !shouldHidePostContent"
+          v-if="mediaCount > 0 && !shouldHidePostContent"
           class="mt-5 grid gap-2"
-          :class="post.images.length === 1 ? 'grid-cols-1' : 'grid-cols-2'"
+          :class="mediaCount === 1 ? 'grid-cols-1' : 'grid-cols-2'"
         >
           <img
             v-for="(src, index) in post.images"
@@ -124,6 +95,12 @@ function handleReport() {
             :src="src"
             :alt="`图片 ${index + 1}`"
             class="film-image h-40 w-full rounded-[1.35rem] object-cover"
+          />
+          <ImagePlaceholder
+            v-for="index in (post.imageSlots ?? 0)"
+            :key="`slot-${index}`"
+            :size="mediaCount === 1 ? 'lg' : 'md'"
+            :label="`图 ${index}`"
           />
         </div>
       </Transition>
@@ -166,8 +143,9 @@ function handleReport() {
 
     <Card v-if="post" class="p-5">
       <CommentSection
+        :key="post.id"
         :comments="comments"
-        @update:comments="comments = $event"
+        @update:comments="setPostComments(post.id, $event)"
       />
     </Card>
 

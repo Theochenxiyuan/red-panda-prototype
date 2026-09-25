@@ -7,11 +7,20 @@ import CommunityFeed from '@/components/community/CommunityFeed.vue';
 import FloatingPostButton from '@/components/community/FloatingPostButton.vue';
 import PageHeader from '@/components/layout/PageHeader.vue';
 import Input from '@/components/ui/input/Input.vue';
-import { boards, posts } from '@/data/mock';
-import type { BoardId } from '@/types/app';
+import { usePosts } from '@/composables/usePosts';
+import { boards } from '@/data/mock';
+import type { BoardId, PostDraft } from '@/types/app';
 
 const activeBoard = shallowRef<BoardId>('home');
 const searchQuery = shallowRef('');
+const { posts, createPost } = usePosts();
+
+function handlePublish(draft: PostDraft) {
+  const post = createPost(draft);
+
+  activeBoard.value = post.boardId;
+  searchQuery.value = '';
+}
 </script>
 
 <template>
@@ -26,7 +35,7 @@ const searchQuery = shallowRef('');
     <BoardTabs v-model="activeBoard" :boards="boards" />
   </PageHeader>
 
-  <section class="px-5 pt-4">
+  <section class="px-5 pb-14 pt-4">
     <CommunityFeed
       :posts="posts"
       :active-board="activeBoard"
@@ -34,5 +43,5 @@ const searchQuery = shallowRef('');
     />
   </section>
 
-  <FloatingPostButton />
+  <FloatingPostButton @publish="handlePublish" />
 </template>

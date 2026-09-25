@@ -8,7 +8,7 @@ const now = computed(() => {
 </script>
 
 <template>
-  <div class="relative z-50 flex h-11 shrink-0 items-center justify-between bg-background/80 px-7 pt-[calc(0.25rem+env(safe-area-inset-top))] text-xs font-semibold text-panda-bark backdrop-blur-xl">
+  <div class="relative z-50 flex h-[calc(2.75rem+env(safe-area-inset-top))] shrink-0 items-center justify-between bg-background/80 px-7 pt-[calc(0.25rem+env(safe-area-inset-top))] text-xs font-semibold text-panda-bark backdrop-blur-xl">
     <span>{{ now }}</span>
     <div class="absolute left-1/2 top-[calc(0.6rem+env(safe-area-inset-top))] h-[1.6rem] w-[7.5rem] -translate-x-1/2 rounded-full bg-panda-ink shadow-[inset_0_-4px_12px_rgba(255,255,255,0.08)]" />
     <div class="flex items-center gap-1.5">

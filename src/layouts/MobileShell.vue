@@ -1,7 +1,21 @@
 <script setup lang="ts">
+import { nextTick, useTemplateRef, watch } from 'vue';
+import { useRoute } from 'vue-router';
+
 import BottomNav from '@/components/layout/BottomNav.vue';
 import StatusBar from '@/components/layout/StatusBar.vue';
 import ToastViewport from '@/components/layout/ToastViewport.vue';
+
+const route = useRoute();
+const content = useTemplateRef<HTMLElement>('content');
+
+watch(
+  () => route.fullPath,
+  async () => {
+    await nextTick();
+    if (content.value) content.value.scrollTop = 0;
+  },
+);
 </script>
 
 <template>
@@ -29,6 +43,7 @@ import ToastViewport from '@/components/layout/ToastViewport.vue';
       />
       <StatusBar />
       <main
+        ref="content"
         class="scrollbar-hidden-desktop relative z-10 flex-1 overflow-y-auto pb-[calc(7.75rem+env(safe-area-inset-bottom))]"
       >
         <slot />
