@@ -18,11 +18,11 @@ import Card from '@/components/ui/card/Card.vue';
 import DetailHeader from '@/components/layout/DetailHeader.vue';
 import Tabs from '@/components/ui/tabs/Tabs.vue';
 import { useToast } from '@/composables/useToast';
+import { usePosts } from '@/composables/usePosts';
 import {
   achievements,
   followers,
   following,
-  posts,
   userProfile,
   wikiArticles,
 } from '@/data/mock';
@@ -34,6 +34,7 @@ const props = defineProps<{
 
 const router = useRouter();
 const { showToast } = useToast();
+const { posts } = usePosts();
 const achievementStatusFilter = shallowRef('all');
 const achievementCategoryFilter = shallowRef<'all' | AchievementCategory>(
   'all',
@@ -64,7 +65,7 @@ const sectionTitle = computed(() => {
 const savedArticles = computed(() =>
   wikiArticles.filter((article) => article.saved),
 );
-const myPosts = computed(() => posts.slice(0, 2));
+const myPosts = computed(() => posts.value.filter((post) => post.author.id === 'me'));
 const socialUsers = computed<SocialUser[]>(() =>
   props.section === 'followers' ? followers : following,
 );

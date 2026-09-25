@@ -1,6 +1,30 @@
 import type { CommentData } from '@/types/app'
 
 export const postComments: Record<string, CommentData[]> = {
+  'post-5': [
+    {
+      id: 'c8',
+      author: '竹叶汽水',
+      title: '记忆收藏家',
+      avatar: '/images/avatars/zhuye-soda.png',
+      content: '这个分辨方法太实用了！',
+      createdAt: '刚刚',
+      likes: 0,
+      liked: false,
+      replies: [],
+    },
+    {
+      id: 'c9',
+      author: '半山风',
+      title: '竹林画手',
+      avatar: '/images/avatars/banshanfeng.png',
+      content: '想看更多尾巴纹路资料。',
+      createdAt: '18分钟前',
+      likes: 0,
+      liked: false,
+      replies: [],
+    },
+  ],
   'post-1': [
     {
       id: 'c1',

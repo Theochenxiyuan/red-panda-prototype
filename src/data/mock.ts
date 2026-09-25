@@ -10,6 +10,19 @@ export const boards: Board[] = [
 
 export const posts: Post[] = [
   {
+    id: 'post-5',
+    boardId: 'science',
+    title: '从尾巴纹路分辨小熊猫和浣熊',
+    excerpt: '整理了尾巴环纹和脸部花纹的对比，分享一个简单的观察方法。',
+    body: '小熊猫的尾巴蓬松，浅色环纹宽而柔和；浣熊的尾巴环纹更深、更清晰。再看看脸部：小熊猫的白色斑纹沿着眼角延伸，浣熊则有明显的深色眼罩。下次看到照片，可以先从这两个地方辨认。',
+    author: { id: 'me', name: 'Theo', title: '竹林守护者', avatar: '/images/avatars/theo.png' },
+    createdAt: '2小时前',
+    isSpoiler: false,
+    images: ['/images/content/red-panda-patterns.png'],
+    comments: 2,
+    likes: 12,
+  },
+  {
     id: 'post-1',
     boardId: 'science',
     title: '小熊猫为什么不是小浣熊？',
@@ -116,9 +129,9 @@ export const wikiArticles: WikiArticle[] = [
 ]
 
 export const messages: Message[] = [
-  { id: 'm1', type: 'comments', title: '竹叶汽水 回复了你', description: '“这个分辨方法太实用了！”', createdAt: '刚刚', unread: true, to: '/posts/post-1' },
-  { id: 'm2', type: 'comments', title: '半山风 评论了你的帖子', description: '想看更多尾巴纹路资料。', createdAt: '18分钟前', unread: true, to: '/posts/post-1' },
-  { id: 'm3', type: 'likes', title: '你的帖子获得 12 个赞', description: '《小熊猫为什么不是小浣熊？》', createdAt: '40分钟前', unread: false, to: '/posts/post-1' },
+  { id: 'm1', type: 'comments', title: '竹叶汽水 评论了你的帖子', description: '这个分辨方法太实用了！', createdAt: '刚刚', unread: true, to: '/posts/post-5' },
+  { id: 'm2', type: 'comments', title: '半山风 评论了你的帖子', description: '想看更多尾巴纹路资料。', createdAt: '18分钟前', unread: true, to: '/posts/post-5' },
+  { id: 'm3', type: 'likes', title: '你的帖子获得 12 个赞', description: '《从尾巴纹路分辨小熊猫和浣熊》', createdAt: '40分钟前', unread: false, to: '/posts/post-5' },
   { id: 'm4', type: 'system', title: '成就解锁：竹林观察员', description: '你已阅读 5 篇官方 Wiki。', createdAt: '今天 09:12', unread: true, to: '/profile/achievements' },
   { id: 'm5', type: 'system', title: '官方公告', description: '本周新增两篇保护行动指南。', createdAt: '昨天', unread: false, to: '/wiki/wiki-2' },
 ]
@@ -143,7 +156,7 @@ export const gameProgress: GameProgress = {
 export const profileMenuItems: MenuItem[] = [
   { id: 'saved', label: '收藏', description: '2 篇文章', to: '/profile/saved' },
   { id: 'comments', label: '评论', description: '最近互动', to: '/profile/comments' },
-  { id: 'posts', label: '帖子', description: '2 篇发布', to: '/profile/posts' },
+  { id: 'posts', label: '帖子', description: '我的发布', to: '/profile/posts' },
   { id: 'settings', label: '设置', description: '账号、通知、隐私', to: '/settings' },
 ]
 
