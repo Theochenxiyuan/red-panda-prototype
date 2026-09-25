@@ -1,40 +1,37 @@
-# Red Panda's Home App 原型
+# Red Panda's Home
 
-基于 Vue 3 的移动端 App 可点击原型，覆盖社区、Wiki、消息、我的和“开始游戏”入口。
+小熊猫主题移动端 App 的可点击产品设计 Demo。原型串联社区、Wiki、消息、个人页面和游戏入口，使用本地模拟数据展示主要页面与交互流程。
 
-## 技术栈
+## 可以体验什么
 
-```text
-Vue 3 + Vite + TypeScript + Vue Router + Tailwind CSS + shadcn-vue style components + lucide-vue-next
-```
+| 模块 | 交互内容 |
+| --- | --- |
+| 社区 | 浏览与筛选板块、搜索帖子、发布新帖、展开剧透、查看详情、评论与回复 |
+| Wiki | 按分类浏览和搜索文章、阅读详情、切换收藏按钮状态 |
+| 消息 | 切换消息分类、打开消息、将单条消息或全部消息标为已读 |
+| 我的 | 查看个人内容、粉丝与关注、成就和设置页面 |
+| 游戏 | 查看游戏入口与进度摘要 |
 
-## 运行
+原型使用本地模拟数据，无需后端服务。新帖、评论和消息已读状态保留在当前页面运行期间，刷新页面后恢复初始数据；Wiki 收藏状态仅在当前文章详情页生效。游戏页面展示入口与摘要。
+
+## 本地运行
+
+需要 Node.js 和 pnpm。
 
 ```bash
 pnpm install
 pnpm dev
 ```
 
-## 构建检查
+启动后打开终端显示的本地地址。构建及预览命令：
 
 ```bash
 pnpm build
+pnpm preview
 ```
 
-## 页面路由
+## 技术栈
 
-```text
-/community          社区
-/posts/:id          帖子详情
-/wiki               小熊猫 Wiki
-/wiki/:id           Wiki 文章详情
-/game               开始游戏入口
-/messages           消息
-/profile            我的
-/profile/:section   我的内容占位页
-/settings           设置
-```
+Vue 3、TypeScript、Vite、Vue Router、Tailwind CSS、Lucide 图标，以及项目内的 shadcn-vue 风格组件。
 
-## 待办事项
-
-未完成内容集中维护在 `TODO.md`。后续新增或完成事项时需要同步更新该文档。
+后续原型事项见 [TODO.md](TODO.md)。
